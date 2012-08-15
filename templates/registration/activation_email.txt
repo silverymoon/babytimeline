@@ -1,0 +1,1 @@
+Wenn Du Deinen Account bei babytimeline.de aktivieren möchtest, klick bitte innerhalb der nächsten {{expiration_days}} Tage auf diesen Link: http://{{site}}/accounts/activate/{{activation_key}}/ .

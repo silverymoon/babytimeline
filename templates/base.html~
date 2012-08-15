@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="/site_media/css/style.css" />
+    <link type="text/css" href="/site_media/css/greeny/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+    <script type="text/javascript" src="/site_media/js/jquery-1.4.1.js"></script>          
+    <script type="text/javascript" src="/site_media/js/jquery-ui-1.7.2.custom.min.js"></script> 
+    <script type="text/javascript">  
+      $(document).ready(function() {
+      {% block javascript %}
+      {% endblock %}
+      });
+ </script>           
+    <title>{{ title }}</title>
+</head>
+<body>
+<div id='container'>
+<div id='header'>
+  <div id='logo'><a href='/babytimeline/'><img src='/site_media/images/logo.jpg'/></a></div>
+  <div id='tagline'> Meilensteine Deines Babys</div>
+<div id='main_menu'>
+ <ul class="menu">
+  <li class="ui-corner-top ui-state-default"><a href='/about/'> Über Babytimeline</a></li>
+  <li class="ui-corner-top ui-state-default"><a href='/imprint/'> Impressum</a></li>
+ </ul>
+</div> <!-- end #main_menu -->
+</div> <!-- end #header -->
+<div id='sidebar'>
+     <div class='sidebar_heading ui-corner-all'>Meilensteine festhalten</div>
+     <div class='sidebar_body'> Mit Babytimeline kannst Du ganz einfach Fotos von Deinem Baby hochladen, eintragen, was es gerade macht, und das ganze dann als PDF exportieren. PDFs kann man ausdrucken und verschenken, oder per Email verschicken, oder oder oder... </div>
+     <div class='sidebar_heading ui-corner-all'> Unterstütze mich!</div>
+     <div class='sidebar_body'> Wenn Du babytimeline praktisch findest, gerne benutzt und Dich erkenntlich zeigen möchtest, darfst du mir gerne etwas von meiner <a href="http://www.amazon.de/registry/wishlist/271GDXGVJTXSC/ref=cm_wl_rlist_go">amazon-Wunschliste</a> schenken.</div>
+</div>
+  </div> <!-- end #sidebar -->
+<div id='content_container'>
+  <div id='content'>
+    <h1>{{ title }}</h1>
+    {% block content %}{% endblock %}
+     <!-- Content Goes Here! -->
+
+  </div>        
+  <div class='clear'></div>
+</div> <!-- end #content_container -->
+<div id='footer'>
+ <div id='copyright'>&copy; 2010 <a href="http://www.silverymoon.de">Britta Rogowski</a>.</div>
+</div> <!-- end#footer -->
+</div> <!--end #container --> 
+</body>
+</html>

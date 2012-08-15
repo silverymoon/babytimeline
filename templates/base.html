@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="{{MEDIA_URL}}/css/style2.css" />
+    <link type="text/css" href="{{MEDIA_URL}}/css/greeny/jquery-ui-1.8.1.custom.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="{{MEDIA_URL}}/images/favicon.png">
+    <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery-1.4.1.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery-ui-1.8.1.custom.min.js"></script>
+    {% block headinclude %}
+    {% endblock %}
+    <script type="text/javascript">
+      $(document).ready(function() {
+      {% block javascript %}
+      {% endblock %}
+      });
+ </script>
+    <title>{{ title }}</title>
+</head>
+<body>
+<div id='main_menu'>
+ <ul class="menu">
+  <li><a href='/news/'>{% trans "Neuigkeiten" %}</a></li>
+  <li><a href='/contact/'>{% trans "Kontakt" %}</a></li>
+  <li><a href='/about/'>{% trans "Über Babytimeline" %}</a></li>
+  <li><a href='/privacy/'>{% trans "Datenschutz" %}</a></li>
+  <li><a href='/imprint/'>{% trans "Impressum" %}</a></li>
+ </ul>
+</div> <!-- end #main_menu -->
+<div id='header'>
+  <div id='logo'><a href='/'><img src='{{MEDIA_URL}}/images/feet.jpeg'/>babytimeline</a></div>
+  <div id='tagline'>{% trans "Meilensteine Deines Babys" %}</div>
+      <div id="languages">
+        <div class="lang">
+        <form action="/i18n/setlang/" method="post">
+            <input name="next" type="hidden" value="{{ request.path }}" />
+            <input name="language" type="hidden" value="de" />
+            <input type="image" src="{{MEDIA_URL}}/images/de.png" value="Submit" alt="Submit" />
+        </form>
+        </div>
+        <div class="lang"
+        <form action="/i18n/setlang/" method="post">
+            <input name="next" type="hidden" value="{{ request.path }}" />
+            <input name="language" type="hidden" value="en" />
+            <input type="image" src="{{MEDIA_URL}}/images/us.png" value="Submit" alt="Submit" />
+        </form>
+        </div>
+    </div>
+
+</div> <!-- end #header -->
+<div id="container">
+<div id='sidebar'>
+
+     <div class='sidebar_heading'>{% trans "Meilensteine festhalten" %}</div>
+     <div class='sidebar_body'>{% trans "Mit Babytimeline kannst Du ganz einfach Fotos von Deinem Baby hochladen, eintragen, was es gerade macht, und das ganze dann als PDF exportieren. PDFs kann man ausdrucken und verschenken, oder per Email verschicken, oder oder oder... " %}</div>
+     <div class='sidebar_heading'>{% trans "Kontakt" %}</div>
+     <div class='sidebar_body'>{% blocktrans %}Funktioniert irgendwas nicht? Oder gibt es ein Feature, was Du Dir ganz doll wünscht? Dann <a href="/contact/">kontaktiere</a> mich einfach! {% endblocktrans %}</div>
+     {% if user.is_authenticated %}
+     <div class='sidebar_heading'>{% trans "Eingeloggt" %}</div>
+     <div class='sidebar_body'>{% blocktrans  with user.username as user %}Du bist eingeloggt als {{ user }}. <a href="/accounts/password/change/">Passwort ändern</a> oder <a href="/accounts/logout/">ausloggen.{% endblocktrans %}</a></div>
+     {% endif %}
+  </div> <!-- end #sidebar -->
+  <div id='content'>
+    {% block content %}
+     <!-- Content Goes Here! -->
+    {% endblock %}
+  </div>
+</div> <!-- end #container -->
+<div id='footer' class="clearall">
+ <div id='copyright'>&copy; 2010 <a href="http://www.silverymoon.de">Britta Rogowski</a>.</div>
+</div> <!-- end#footer -->
+</body>
+</html>

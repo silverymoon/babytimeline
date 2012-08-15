@@ -1,0 +1,41 @@
+# This Python file uses the following encoding: utf-8
+from django.utils.translation import ugettext as _
+from django.db import models
+
+class Baby(models.Model):
+    birth_date = models.DateTimeField()
+    weight_in_g = models.IntegerField(blank = True)
+    size_in_cm = models.IntegerField(blank = True)
+    name = models.CharField(max_length = 64)
+
+    def birth_data(self):
+        return self.birth_date.strftime("%x") + ": %dg, %dcm" %(self.weight_in_g, self.size_in_cm)
+        
+class Timeline(models.Model):
+    baby = models.ForeignKey(Baby)
+
+class Event(models.Model):
+    EVENT_CHOICES = (
+        (u'WALK', _(u'ich kann laufen!')),
+        (u'SMILE', _(u'ich lächele!')),
+        (u'EATS', _(u'ich darf was essen')),
+        (u'CRAWL', _(u'ich kann krabbeln!')),
+        (u'FREE', ''),
+    )
+    date = models.DateField()
+    note = models.CharField(max_length = 512, blank = True)
+    type = models.CharField(max_length = 8, choices = EVENT_CHOICES)
+    timeline = models.ForeignKey(Timeline)
+
+    def get_text(self):
+        if self.type == "FREE":
+            return self.note
+        return self.get_type_display()
+
+class Photo(models.Model):
+    date = models.DateField()
+    file = models.ImageField(upload_to = "baby_photos")
+    timeline = models.ForeignKey(Timeline)
+
+
+

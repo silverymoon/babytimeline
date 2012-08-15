@@ -1,0 +1,18 @@
+* debug export crasht bei Baby 2
+
+* Export-Webseite
+
+* finish i18n forms
+* feature test locale stuff
+* Flatpages übersetzen
+* Meilensteine nachtragen
+
+
+pimp my export:
+** text umbrechen auf feste breite (goldener schnitt zur bildhöhe)
+** rand rechts und links (auch bildhöhe)
+** bei rauslappen der milestones lösung zurückweisen bzw. constraint
+
+facebook
+** posts auf wall mit bild, wenn da
+** tickbox "auf facebook"

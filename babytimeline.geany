@@ -1,0 +1,17 @@
+
+[indentation]
+indent_width=4
+indent_type=0
+indent_hard_tab_width=8
+detect_indent=false
+indent_mode=2
+
+[project]
+name=babytimeline
+base_path=/home/britta/babytimeline/src/babytimeline
+make_in_base_path=false
+description=
+run_cmd=/home/britta/babytimeline/babytimeline/bin/python manage.py runserver
+
+[files]
+current_page=0

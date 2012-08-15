@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load tltagutils %}
+{% block javascript %}
+    $('.icon').hover(
+        function() { $(this).addClass('ui-state-hover'); },
+        function() { $(this).removeClass('ui-state-hover'); }
+    );
+    $('#accordion').accordion({autoHeight: false});
+
+{% endblock %}
+
+{% block content %}
+<div id="introtext">
+{% blocktrans with user.username as user%}
+Hallo, {{user}}. Hier sind Deine Timelines.
+{% endblocktrans %}
+</div>
+<div class="buttons">
+{% icon "" "addbaby" "addbaby" _("Baby hinzufügen") "plusthick"%}
+</div>
+<div id="accordion" class="clearall">
+{% for baby in baby_list %}
+{% include "timeline/baby.html" %}
+{% endfor %}
+</div>
+
+{% endblock %}
+
+
+
+
+
+

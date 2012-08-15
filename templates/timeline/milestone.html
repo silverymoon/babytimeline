@@ -1,0 +1,15 @@
+{% load tltagutils %}
+<div class="milestone clearall" id="milestone_{{ milestone.id }}">
+<h2>{{ milestone.date }}</h2>
+  <div class="buttons">
+  {% icon milestone.idstr "/milestone/edit/" "ms_edit_" _("Meilenstein editieren") "pencil"%}
+  {% icon milestone.idstr "/milestone/delete/" "ms_delete_" _("Meilenstein löschen") "trash"%}
+  </div>
+<div class="msinfo">
+  {% if milestone.is_photo %}
+  <img class="msimg" src="/milestone/image/{{ milestone.id }}" height="150"/>
+  {% else %}
+  {% mstext %}
+  {% endif %}
+</div>
+</div>

@@ -1,0 +1,6 @@
+from django.conf.urls.defaults import *
+
+urlpatterns = patterns('babytimeline.timeline.views',
+    (r'^/$', 'index'),
+    (r'^baby/(?P<baby_id>\d+)$', 'baby'),
+    (r'^(?P<baby_id>\d+)add_event/$', 'add_event'),

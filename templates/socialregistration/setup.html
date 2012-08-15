@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+{% load socialregistration_tags %}
+<h1>{% trans "Username und Emailadresse"%}</h1>
+
+<p>{% trans "Damit Du babytimeline.de benutzen kannst, musst Du Dir noch einen Usernamen ausdenken und eine Email-Adresse angeben. Diese Daten geben die anderen Dienste leider nicht weiter. Vielen Dank!"%}</p>
+<form action="." method="post">
+    {% include "form_snippet.html" %}
+    {% social_csrf_token %}
+    <input type="submit" value="Speichern" />
+</form>
+{% endblock %}

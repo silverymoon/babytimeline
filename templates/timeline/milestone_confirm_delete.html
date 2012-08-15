@@ -1,0 +1,15 @@
+{% extends "base.html"%}
+
+{% block content %}
+<form action="{{ action }}" method="post">
+{% if object.is_photo %}
+{% trans "Willst Du wirklich dieses Foto löschen?"%}
+<img src="{{ object.image.url }}" width="75"/>
+{% else %}
+{% blocktrans with object.get_text as text %}
+Willst Du wirklich den Meilenstein {{ text }} löschen?
+{% endblocktrans %}
+{% endif %}
+<input type="submit" value="Löschen"/>
+</form>
+{% endblock %}

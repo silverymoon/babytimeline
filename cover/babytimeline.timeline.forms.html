@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>babytimeline.timeline.forms</title>
+</head>
+<body>
+babytimeline.timeline.forms
+<style>
+.coverage pre {float: left; margin: 0px 1em; border: none;
+               padding: 0px; }
+.num pre { margin: 0px }
+.nocov, .nocov pre {background-color: #faa}
+.cov, .cov pre {background-color: #cfc}
+div.coverage div { clear: both; height: 1.1em}
+</style>
+<div class="stats">
+Covered: 83 lines<br/>
+Missed: 4 lines<br/>
+Skipped 24 lines<br/>
+Percent: 95 %<br/>
+
+</div>
+<div class="coverage">
+<div class="skip"><span class="num"><pre>  1</pre></span><pre># This Python file uses the following encoding: utf-8</pre></div>
+<div class="cov"><span class="num"><pre>  2</pre></span><pre>from django import forms</pre></div>
+<div class="cov"><span class="num"><pre>  3</pre></span><pre>from django.utils.safestring import mark_safe</pre></div>
+<div class="cov"><span class="num"><pre>  4</pre></span><pre>from django.contrib.auth.models import User</pre></div>
+<div class="cov"><span class="num"><pre>  5</pre></span><pre>from django.forms.util import ErrorList</pre></div>
+<div class="skip"><span class="num"><pre>  6</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>  7</pre></span><pre>import datetime</pre></div>
+<div class="skip"><span class="num"><pre>  8</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>  9</pre></span><pre>import models</pre></div>
+<div class="skip"><span class="num"><pre> 10</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 11</pre></span><pre>class CalendarWidget(forms.DateInput):</pre></div>
+<div class="skip"><span class="num"><pre> 12</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 13</pre></span><pre>    def __init__(self, attrs={}, format=None):</pre></div>
+<div class="cov"><span class="num"><pre> 14</pre></span><pre>        attrs['class'] = 'date'</pre></div>
+<div class="cov"><span class="num"><pre> 15</pre></span><pre>        super(forms.DateInput, self).__init__(attrs)</pre></div>
+<div class="cov"><span class="num"><pre> 16</pre></span><pre>        if format:</pre></div>
+<div class="nocov"><span class="num"><pre> 17</pre></span><pre>            self.format = format</pre></div>
+<div class="skip"><span class="num"><pre> 18</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 19</pre></span><pre>    def render(self, name, value, attrs=None):</pre></div>
+<div class="nocov"><span class="num"><pre> 20</pre></span><pre>        value = datetime.date.today()</pre></div>
+<div class="nocov"><span class="num"><pre> 21</pre></span><pre>        return super(forms.DateInput, self).render(name, value, attrs)</pre></div>
+<div class="skip"><span class="num"><pre> 22</pre></span><pre>        #btn = &quot;&lt;button id='calendar'&gt;&lt;span class='ui-icon ui-icon-calendar'&gt;Kalender&lt;/span&gt;&lt;/button&gt;&quot;</pre></div>
+<div class="skip"><span class="num"><pre> 23</pre></span><pre>        #return mark_safe(input + btn)</pre></div>
+<div class="skip"><span class="num"><pre> 24</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 25</pre></span><pre>    class Media:</pre></div>
+<div class="cov"><span class="num"><pre> 26</pre></span><pre>        js = ('js/calendar.js',)</pre></div>
+<div class="skip"><span class="num"><pre> 27</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 28</pre></span><pre>class DateTimeWidget(forms.MultiWidget):</pre></div>
+<div class="cov"><span class="num"><pre> 29</pre></span><pre>    def __init__(self,attrs=None):</pre></div>
+<div class="cov"><span class="num"><pre> 30</pre></span><pre>        widgets = (</pre></div>
+<div class="cov"><span class="num"><pre> 31</pre></span><pre>            CalendarWidget(),</pre></div>
+<div class="cov"><span class="num"><pre> 32</pre></span><pre>            forms.TextInput(attrs={'class' : 'time_input'}),</pre></div>
+<div class="cov"><span class="num"><pre> 33</pre></span><pre>        )</pre></div>
+<div class="cov"><span class="num"><pre> 34</pre></span><pre>        super(DateTimeWidget, self).__init__(widgets, attrs)</pre></div>
+<div class="skip"><span class="num"><pre> 35</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 36</pre></span><pre>    def decompress(self, value):</pre></div>
+<div class="cov"><span class="num"><pre> 37</pre></span><pre>        if value:</pre></div>
+<div class="cov"><span class="num"><pre> 38</pre></span><pre>            if isinstance(value, datetime.datetime):</pre></div>
+<div class="cov"><span class="num"><pre> 39</pre></span><pre>                return (value.date(), value.time().strftime(&quot;%H:%M&quot;))</pre></div>
+<div class="cov"><span class="num"><pre> 40</pre></span><pre>            else:</pre></div>
+<div class="cov"><span class="num"><pre> 41</pre></span><pre>                return value.split(&quot; &quot;)</pre></div>
+<div class="cov"><span class="num"><pre> 42</pre></span><pre>        return (datetime.date.today(), None)</pre></div>
+<div class="skip"><span class="num"><pre> 43</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 44</pre></span><pre>    def value_from_datadict(self, data, files, name):</pre></div>
+<div class="cov"><span class="num"><pre> 45</pre></span><pre>        val = super(DateTimeWidget, self).value_from_datadict(data, files, name)</pre></div>
+<div class="cov"><span class="num"><pre> 46</pre></span><pre>        return val</pre></div>
+<div class="skip"><span class="num"><pre> 47</pre></span><pre></pre></div>
+<div class="skip"><span class="num"><pre> 48</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 49</pre></span><pre>class MilestoneForm(forms.ModelForm):</pre></div>
+<div class="cov"><span class="num"><pre> 50</pre></span><pre>    date = forms.DateField(label=&quot;Datum des Meilensteins&quot;,widget=CalendarWidget())</pre></div>
+<div class="cov"><span class="num"><pre> 51</pre></span><pre>    type = forms.ChoiceField(label=u&quot;Meilenstein auswählen...&quot;,choices = (('', '-----'),) + models.Milestone.MILESTONE_CHOICES, required=False)</pre></div>
+<div class="cov"><span class="num"><pre> 52</pre></span><pre>    image = forms.ImageField(label=&quot;... oder Bild hochladen...&quot;, required=False)</pre></div>
+<div class="cov"><span class="num"><pre> 53</pre></span><pre>    note = forms.CharField(label=&quot;...oder Freitext eingeben&quot;, max_length=512, required=False)</pre></div>
+<div class="cov"><span class="num"><pre> 54</pre></span><pre>    baby = forms.CharField(widget=forms.HiddenInput())</pre></div>
+<div class="skip"><span class="num"><pre> 55</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 56</pre></span><pre>    def clean(self):</pre></div>
+<div class="cov"><span class="num"><pre> 57</pre></span><pre>        if 'type' in self.cleaned_data:</pre></div>
+<div class="cov"><span class="num"><pre> 58</pre></span><pre>            self.cleanup_type()</pre></div>
+<div class="cov"><span class="num"><pre> 59</pre></span><pre>        if 'date' in self.cleaned_data:</pre></div>
+<div class="cov"><span class="num"><pre> 60</pre></span><pre>            self.cleanup_date()</pre></div>
+<div class="cov"><span class="num"><pre> 61</pre></span><pre>        if self.cleaned_data['image']:</pre></div>
+<div class="nocov"><span class="num"><pre> 62</pre></span><pre>            self.cleaned_data['type'] = 'PHOTO'</pre></div>
+<div class="cov"><span class="num"><pre> 63</pre></span><pre>        elif self.cleaned_data['note']:</pre></div>
+<div class="cov"><span class="num"><pre> 64</pre></span><pre>            self.cleaned_data['type'] = 'FREE'</pre></div>
+<div class="cov"><span class="num"><pre> 65</pre></span><pre>        return self.cleaned_data</pre></div>
+<div class="skip"><span class="num"><pre> 66</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 67</pre></span><pre>    def cleanup_type(self):</pre></div>
+<div class="cov"><span class="num"><pre> 68</pre></span><pre>        type = self.cleaned_data['type']</pre></div>
+<div class="cov"><span class="num"><pre> 69</pre></span><pre>        if type != 'PHOTO' and type !='FREE':</pre></div>
+<div class="cov"><span class="num"><pre> 70</pre></span><pre>            orig_milestone = models.Milestone.objects.filter(baby = self.cleaned_data['baby'], type = type)</pre></div>
+<div class="cov"><span class="num"><pre> 71</pre></span><pre>            if orig_milestone:</pre></div>
+<div class="cov"><span class="num"><pre> 72</pre></span><pre>                self._errors['type'] = ErrorList([&quot;milestone already exists!&quot;])</pre></div>
+<div class="cov"><span class="num"><pre> 73</pre></span><pre>                del self.cleaned_data['type']</pre></div>
+<div class="cov"><span class="num"><pre> 74</pre></span><pre>        return type</pre></div>
+<div class="skip"><span class="num"><pre> 75</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 76</pre></span><pre>    def cleanup_date(self):</pre></div>
+<div class="cov"><span class="num"><pre> 77</pre></span><pre>        date = self.cleaned_data['date']</pre></div>
+<div class="cov"><span class="num"><pre> 78</pre></span><pre>        if date.toordinal() &lt; models.Baby.objects.get(pk = self.cleaned_data['baby']).birth_date.toordinal():</pre></div>
+<div class="cov"><span class="num"><pre> 79</pre></span><pre>            self._errors['date'] = ErrorList([&quot;date before baby's birth&quot;])</pre></div>
+<div class="cov"><span class="num"><pre> 80</pre></span><pre>            del self.cleaned_data['date']</pre></div>
+<div class="cov"><span class="num"><pre> 81</pre></span><pre>        return date</pre></div>
+<div class="skip"><span class="num"><pre> 82</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 83</pre></span><pre>    def save(self):</pre></div>
+<div class="cov"><span class="num"><pre> 84</pre></span><pre>        baby_id = self.cleaned_data['baby']</pre></div>
+<div class="cov"><span class="num"><pre> 85</pre></span><pre>        del self.cleaned_data['baby']</pre></div>
+<div class="cov"><span class="num"><pre> 86</pre></span><pre>        milestone = forms.ModelForm.save(self, commit=False)</pre></div>
+<div class="cov"><span class="num"><pre> 87</pre></span><pre>        milestone.baby = models.Baby.objects.get(pk = baby_id)</pre></div>
+<div class="cov"><span class="num"><pre> 88</pre></span><pre>        milestone.save()</pre></div>
+<div class="cov"><span class="num"><pre> 89</pre></span><pre>        return milestone</pre></div>
+<div class="skip"><span class="num"><pre> 90</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 91</pre></span><pre>    class Meta:</pre></div>
+<div class="cov"><span class="num"><pre> 92</pre></span><pre>        model = models.Milestone</pre></div>
+<div class="cov"><span class="num"><pre> 93</pre></span><pre>        fields = ['date', 'type', 'image', 'note', 'baby']</pre></div>
+<div class="skip"><span class="num"><pre> 94</pre></span><pre></pre></div>
+<div class="skip"><span class="num"><pre> 95</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 96</pre></span><pre>class BabyForm(forms.ModelForm):</pre></div>
+<div class="cov"><span class="num"><pre> 97</pre></span><pre>    birth_date = forms.DateTimeField(label=&quot;Geburtsdatum und -zeit&quot;, widget=DateTimeWidget(), help_text=&quot;Zeit als hh:mm eingeben.&quot;)</pre></div>
+<div class="cov"><span class="num"><pre> 98</pre></span><pre>    user = forms.CharField(widget=forms.HiddenInput())</pre></div>
+<div class="skip"><span class="num"><pre> 99</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>100</pre></span><pre>    class Meta:</pre></div>
+<div class="cov"><span class="num"><pre>101</pre></span><pre>        model = models.Baby</pre></div>
+<div class="cov"><span class="num"><pre>102</pre></span><pre>        fields = ['name', 'birth_date', 'weight_in_g', 'size_in_cm']</pre></div>
+<div class="skip"><span class="num"><pre>103</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>104</pre></span><pre>    def save(self):</pre></div>
+<div class="cov"><span class="num"><pre>105</pre></span><pre>        user_id = self.cleaned_data['user']</pre></div>
+<div class="cov"><span class="num"><pre>106</pre></span><pre>        del self.cleaned_data['user']</pre></div>
+<div class="cov"><span class="num"><pre>107</pre></span><pre>        baby = forms.ModelForm.save(self, commit=False)</pre></div>
+<div class="cov"><span class="num"><pre>108</pre></span><pre>        baby.user = User.objects.get(pk = user_id)</pre></div>
+<div class="cov"><span class="num"><pre>109</pre></span><pre>        baby.save()</pre></div>
+<div class="cov"><span class="num"><pre>110</pre></span><pre>        return baby</pre></div>
+<div class="skip"><span class="num"><pre>111</pre></span><pre></pre></div>
+</div>
+</body>
+</html>

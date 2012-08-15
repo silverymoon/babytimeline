@@ -1,0 +1,10 @@
+{% extends "base.html"%}
+
+{% block content %}
+<form action="{{ action }}" method="post">
+{% blocktrans with object.name as name %}
+Willst Du wirklich das Baby {{ name }} löschen?
+{% endblocktrans %}
+<input type="submit" value="Löschen"/>
+</form>
+{% endblock %}

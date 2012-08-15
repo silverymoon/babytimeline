@@ -1,0 +1,6 @@
+Die folgende Nachricht wurde Dir gesendet:
+
+Von: {{name}} <{{email}}>
+
+{{body}}
+------------------------------------------

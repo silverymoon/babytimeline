@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+
+{% block headinclude %}
+{{ form.media }}
+{% endblock %}
+
+{% block content %}
+<form action="{{ action }}" method="post">
+
+    <h2>{{ title }}</h2>
+      {% include "form_snippet.html" %}
+    <p>
+        {% if object %}
+        <input class="button" type="submit" value="{% trans "Speichern"%}"/>
+        {% else %}
+        <input class="button" type="submit" value="{% trans "Hinzufügen"%}"/>
+        {% endif %}
+    </p>
+</form>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+from pyjamas.ui.HTML import HTML
+from pyjamas.ui.RootPanel import RootPanel
+from pyjamas.HTTPRequest import HTTPRequest
+URL="http://localhost:8000/babytimeline"
+
+class AjaxDealer:
+    def __init__(self, callback):
+        self.callback = callback
+
+    def onCompletion(self, text):
+        self.callback.onComplete(text)
+
+    def onError(self, text, code):
+        self.panel.onError(text, code)
+
+    def onTimeout(self, text):
+        self.panel.onTimeout(text)
+
+class Slideshow:
+
+    def onModuleLoad(self):
+        self.slide = HTML()
+        RootPanel().add(self.slide)
+
+        HTTPRequest().asyncPost("http://", "", SlideLoader(self))
+
+    def setSlide(self, content):
+        self.slide.setHTML("<pre>%s</pre>" % content)
+        
+    def onError(self, text, code):
+        self.slide.setHTML(text + "<br />" + code)
+
+if __name__ == '__main__':
+    app = TimelineApp()
+    app.onModuleLoad()

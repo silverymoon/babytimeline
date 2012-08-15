@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% blocktrans %}
+Ui, irgendwas ist da ganz doll daneben gegangen! Möchtest Du vielleicht eine
+<a href="/contact/">Nachricht</a> verschicken und sagen, was Du eigentlich erwartet hast?
+{% endblocktrans %}
+<br/>
+<img src="{{MEDIA_URL}}/images/uhoh.jpg"/>
+{% endblock %}

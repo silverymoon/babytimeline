@@ -1,0 +1,194 @@
+<html>
+<head>
+<title>babytimeline.timeline.views</title>
+</head>
+<body>
+babytimeline.timeline.views
+<style>
+.coverage pre {float: left; margin: 0px 1em; border: none;
+               padding: 0px; }
+.num pre { margin: 0px }
+.nocov, .nocov pre {background-color: #faa}
+.cov, .cov pre {background-color: #cfc}
+div.coverage div { clear: both; height: 1.1em}
+</style>
+<div class="stats">
+Covered: 57 lines<br/>
+Missed: 90 lines<br/>
+Skipped 22 lines<br/>
+Percent: 38 %<br/>
+
+</div>
+<div class="coverage">
+<div class="skip"><span class="num"><pre>  1</pre></span><pre># This Python file uses the following encoding: utf-8</pre></div>
+<div class="cov"><span class="num"><pre>  2</pre></span><pre>from django.views.generic import simple,list_detail, create_update</pre></div>
+<div class="cov"><span class="num"><pre>  3</pre></span><pre>from django.http import HttpResponseRedirect, HttpResponse, HttpResponseServerError</pre></div>
+<div class="cov"><span class="num"><pre>  4</pre></span><pre>from django.conf import settings</pre></div>
+<div class="cov"><span class="num"><pre>  5</pre></span><pre>from django.contrib.auth.decorators import login_required</pre></div>
+<div class="cov"><span class="num"><pre>  6</pre></span><pre>from django.template import Context, loader</pre></div>
+<div class="skip"><span class="num"><pre>  7</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>  8</pre></span><pre>from functools import wraps</pre></div>
+<div class="cov"><span class="num"><pre>  9</pre></span><pre>import locale</pre></div>
+<div class="skip"><span class="num"><pre> 10</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 11</pre></span><pre>import models</pre></div>
+<div class="cov"><span class="num"><pre> 12</pre></span><pre>import forms</pre></div>
+<div class="cov"><span class="num"><pre> 13</pre></span><pre>import export</pre></div>
+<div class="skip"><span class="num"><pre> 14</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 15</pre></span><pre>def permission(permission_tester):</pre></div>
+<div class="cov"><span class="num"><pre> 16</pre></span><pre>    @wraps(permission_tester)</pre></div>
+<div class="cov"><span class="num"><pre> 17</pre></span><pre>    def view_decorator(view_function):</pre></div>
+<div class="cov"><span class="num"><pre> 18</pre></span><pre>        @wraps(view_decorator)</pre></div>
+<div class="cov"><span class="num"><pre> 19</pre></span><pre>        def decorated_view(request, *args, **kwargs):</pre></div>
+<div class="cov"><span class="num"><pre> 20</pre></span><pre>            if permission_tester(request, *args, **kwargs):</pre></div>
+<div class="cov"><span class="num"><pre> 21</pre></span><pre>                view_result = view_function(request, *args, **kwargs)</pre></div>
+<div class="cov"><span class="num"><pre> 22</pre></span><pre>            else:</pre></div>
+<div class="cov"><span class="num"><pre> 23</pre></span><pre>                view_result = simple.direct_to_template(request, 'timeline/not_allowed.html',)</pre></div>
+<div class="cov"><span class="num"><pre> 24</pre></span><pre>            return view_result</pre></div>
+<div class="cov"><span class="num"><pre> 25</pre></span><pre>        return decorated_view</pre></div>
+<div class="cov"><span class="num"><pre> 26</pre></span><pre>    return view_decorator</pre></div>
+<div class="skip"><span class="num"><pre> 27</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 28</pre></span><pre>@permission</pre></div>
+<div class="cov"><span class="num"><pre> 29</pre></span><pre>def user_owns_baby(request, baby_id):</pre></div>
+<div class="cov"><span class="num"><pre> 30</pre></span><pre>    return request.user == models.Baby.objects.get(pk = baby_id).user</pre></div>
+<div class="skip"><span class="num"><pre> 31</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 32</pre></span><pre>@permission</pre></div>
+<div class="cov"><span class="num"><pre> 33</pre></span><pre>def user_owns_milestone(request, milestone_id):</pre></div>
+<div class="cov"><span class="num"><pre> 34</pre></span><pre>    return request.user == models.Milestone.objects.get(pk = milestone_id).baby.user</pre></div>
+<div class="skip"><span class="num"><pre> 35</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 36</pre></span><pre>INDEX_PAGE = &quot;/&quot;</pre></div>
+<div class="skip"><span class="num"><pre> 37</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 38</pre></span><pre>def fix_form(request, field, form, data, instance=None):</pre></div>
+<div class="nocov"><span class="num"><pre> 39</pre></span><pre>    hash = request.POST.copy()</pre></div>
+<div class="nocov"><span class="num"><pre> 40</pre></span><pre>    hash[field] = data</pre></div>
+<div class="nocov"><span class="num"><pre> 41</pre></span><pre>    return form(hash, request.FILES, instance=instance)</pre></div>
+<div class="skip"><span class="num"><pre> 42</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 43</pre></span><pre>def server_error(request, template_name='500.html'):</pre></div>
+<div class="nocov"><span class="num"><pre> 44</pre></span><pre>    t = loader.get_template(template_name) # You need to create a 500.html template.</pre></div>
+<div class="nocov"><span class="num"><pre> 45</pre></span><pre>    return HttpResponseServerError(t.render(Context({</pre></div>
+<div class="nocov"><span class="num"><pre> 46</pre></span><pre>        'MEDIA_URL': settings.MEDIA_URL</pre></div>
+<div class="nocov"><span class="num"><pre> 47</pre></span><pre>    })))</pre></div>
+<div class="skip"><span class="num"><pre> 48</pre></span><pre></pre></div>
+<div class="skip"><span class="num"><pre> 49</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 50</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre> 51</pre></span><pre>def index(request):</pre></div>
+<div class="nocov"><span class="num"><pre> 52</pre></span><pre>    return list_detail.object_list(request,</pre></div>
+<div class="nocov"><span class="num"><pre> 53</pre></span><pre>                                   models.Baby.objects.filter(user = request.user),</pre></div>
+<div class="nocov"><span class="num"><pre> 54</pre></span><pre>                                   template_name = 'timeline/index.html',</pre></div>
+<div class="nocov"><span class="num"><pre> 55</pre></span><pre>                                   template_object_name = &quot;baby&quot;,</pre></div>
+<div class="nocov"><span class="num"><pre> 56</pre></span><pre>                                   extra_context = {&quot;title&quot; : &quot;Willkommen bei Babytimeline&quot;})</pre></div>
+<div class="skip"><span class="num"><pre> 57</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 58</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre> 59</pre></span><pre>def add_baby(request):</pre></div>
+<div class="nocov"><span class="num"><pre> 60</pre></span><pre>    if request.method == 'POST':</pre></div>
+<div class="nocov"><span class="num"><pre> 61</pre></span><pre>        form = fix_form(request, 'user', forms.BabyForm, request.user.id)</pre></div>
+<div class="nocov"><span class="num"><pre> 62</pre></span><pre>        if form.is_valid():</pre></div>
+<div class="nocov"><span class="num"><pre> 63</pre></span><pre>            form.save()</pre></div>
+<div class="nocov"><span class="num"><pre> 64</pre></span><pre>            return HttpResponseRedirect(INDEX_PAGE)</pre></div>
+<div class="nocov"><span class="num"><pre> 65</pre></span><pre>    else:</pre></div>
+<div class="nocov"><span class="num"><pre> 66</pre></span><pre>        form = forms.BabyForm(initial = {'user' : request.user.id})</pre></div>
+<div class="nocov"><span class="num"><pre> 67</pre></span><pre>    return simple.direct_to_template(request, 'timeline/baby_form.html',</pre></div>
+<div class="nocov"><span class="num"><pre> 68</pre></span><pre>                                       extra_context = {&quot;form&quot;: form,</pre></div>
+<div class="nocov"><span class="num"><pre> 69</pre></span><pre>                                                        &quot;title&quot; : &quot;Baby hinzufügen&quot;,</pre></div>
+<div class="nocov"><span class="num"><pre> 70</pre></span><pre>                                                        &quot;action&quot;: &quot;/addbaby/&quot;})</pre></div>
+<div class="skip"><span class="num"><pre> 71</pre></span><pre></pre></div>
+<div class="skip"><span class="num"><pre> 72</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 73</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre> 74</pre></span><pre>@user_owns_baby</pre></div>
+<div class="cov"><span class="num"><pre> 75</pre></span><pre>def edit_baby(request, baby_id):</pre></div>
+<div class="nocov"><span class="num"><pre> 76</pre></span><pre>    baby = models.Baby.objects.get(pk = baby_id)</pre></div>
+<div class="nocov"><span class="num"><pre> 77</pre></span><pre>    if request.method == 'POST':</pre></div>
+<div class="nocov"><span class="num"><pre> 78</pre></span><pre>        form = fix_form(request, 'user', forms.BabyForm, request.user.id, instance=baby)</pre></div>
+<div class="nocov"><span class="num"><pre> 79</pre></span><pre>        if form.is_valid():</pre></div>
+<div class="nocov"><span class="num"><pre> 80</pre></span><pre>            form.save()</pre></div>
+<div class="nocov"><span class="num"><pre> 81</pre></span><pre>            return HttpResponseRedirect(INDEX_PAGE)</pre></div>
+<div class="nocov"><span class="num"><pre> 82</pre></span><pre>    else:</pre></div>
+<div class="nocov"><span class="num"><pre> 83</pre></span><pre>        form = forms.BabyForm(instance=baby)</pre></div>
+<div class="nocov"><span class="num"><pre> 84</pre></span><pre>    return simple.direct_to_template(request, 'timeline/baby_form.html',</pre></div>
+<div class="nocov"><span class="num"><pre> 85</pre></span><pre>                                            extra_context = {&quot;form&quot;: form,</pre></div>
+<div class="nocov"><span class="num"><pre> 86</pre></span><pre>                                                        &quot;object&quot;: baby,</pre></div>
+<div class="nocov"><span class="num"><pre> 87</pre></span><pre>                                                        &quot;title&quot; : &quot;Baby editieren&quot;,</pre></div>
+<div class="nocov"><span class="num"><pre> 88</pre></span><pre>                                                        &quot;action&quot;: &quot;/baby/edit/%s&quot; %baby_id})</pre></div>
+<div class="skip"><span class="num"><pre> 89</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 90</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre> 91</pre></span><pre>@user_owns_baby</pre></div>
+<div class="cov"><span class="num"><pre> 92</pre></span><pre>def delete_baby(request, baby_id):</pre></div>
+<div class="nocov"><span class="num"><pre> 93</pre></span><pre>    return create_update.delete_object(request,</pre></div>
+<div class="nocov"><span class="num"><pre> 94</pre></span><pre>                                       object_id = baby_id,</pre></div>
+<div class="nocov"><span class="num"><pre> 95</pre></span><pre>                                       model = models.Baby,</pre></div>
+<div class="nocov"><span class="num"><pre> 96</pre></span><pre>                                       extra_context = {&quot;title&quot; : &quot;Baby löschen&quot;,</pre></div>
+<div class="nocov"><span class="num"><pre> 97</pre></span><pre>                                                        &quot;action&quot;: &quot;/baby/delete/%s&quot; %baby_id},</pre></div>
+<div class="nocov"><span class="num"><pre> 98</pre></span><pre>                                       post_delete_redirect = INDEX_PAGE)</pre></div>
+<div class="skip"><span class="num"><pre> 99</pre></span><pre></pre></div>
+<div class="skip"><span class="num"><pre>100</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>101</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre>102</pre></span><pre>@user_owns_milestone</pre></div>
+<div class="cov"><span class="num"><pre>103</pre></span><pre>def delete_milestone(request, milestone_id):</pre></div>
+<div class="nocov"><span class="num"><pre>104</pre></span><pre>    return create_update.delete_object(request,</pre></div>
+<div class="nocov"><span class="num"><pre>105</pre></span><pre>                                       object_id = milestone_id,</pre></div>
+<div class="nocov"><span class="num"><pre>106</pre></span><pre>                                       model = models.Milestone,</pre></div>
+<div class="nocov"><span class="num"><pre>107</pre></span><pre>                                       extra_context = {&quot;title&quot; : &quot;Meilenstein löschen&quot;,</pre></div>
+<div class="nocov"><span class="num"><pre>108</pre></span><pre>                                                        &quot;action&quot;: &quot;/milestone/delete/%s&quot; %milestone_id},</pre></div>
+<div class="nocov"><span class="num"><pre>109</pre></span><pre>                                       post_delete_redirect = INDEX_PAGE)</pre></div>
+<div class="skip"><span class="num"><pre>110</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>111</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre>112</pre></span><pre>@user_owns_milestone</pre></div>
+<div class="cov"><span class="num"><pre>113</pre></span><pre>def edit_milestone(request, milestone_id):</pre></div>
+<div class="nocov"><span class="num"><pre>114</pre></span><pre>    milestone = models.Milestone.objects.get(pk = milestone_id)</pre></div>
+<div class="nocov"><span class="num"><pre>115</pre></span><pre>    if request.method == 'POST':</pre></div>
+<div class="nocov"><span class="num"><pre>116</pre></span><pre>        form = fix_form(request, 'baby', forms.MilestoneForm, milestone.baby.id, instance=milestone)</pre></div>
+<div class="nocov"><span class="num"><pre>117</pre></span><pre>        if form.is_valid():</pre></div>
+<div class="nocov"><span class="num"><pre>118</pre></span><pre>            form.save()</pre></div>
+<div class="nocov"><span class="num"><pre>119</pre></span><pre>            return HttpResponseRedirect(INDEX_PAGE)</pre></div>
+<div class="nocov"><span class="num"><pre>120</pre></span><pre>    else:</pre></div>
+<div class="nocov"><span class="num"><pre>121</pre></span><pre>        form = forms.MilestoneForm(instance=milestone)</pre></div>
+<div class="nocov"><span class="num"><pre>122</pre></span><pre>    return simple.direct_to_template(request, 'timeline/milestone_form.html',</pre></div>
+<div class="nocov"><span class="num"><pre>123</pre></span><pre>                              extra_context={'form': form,</pre></div>
+<div class="nocov"><span class="num"><pre>124</pre></span><pre>                                             'object': milestone,</pre></div>
+<div class="nocov"><span class="num"><pre>125</pre></span><pre>                                             'title': &quot;Meilenstein editieren&quot;,</pre></div>
+<div class="nocov"><span class="num"><pre>126</pre></span><pre>                                             'action': &quot;/milestone/edit/%s&quot; %milestone_id})</pre></div>
+<div class="skip"><span class="num"><pre>127</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>128</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre>129</pre></span><pre>@user_owns_baby</pre></div>
+<div class="cov"><span class="num"><pre>130</pre></span><pre>def add_milestone(request, baby_id):</pre></div>
+<div class="nocov"><span class="num"><pre>131</pre></span><pre>    if request.method == 'POST':</pre></div>
+<div class="nocov"><span class="num"><pre>132</pre></span><pre>        form = fix_form(request, 'baby', forms.MilestoneForm, baby_id)</pre></div>
+<div class="nocov"><span class="num"><pre>133</pre></span><pre>        if form.is_valid():</pre></div>
+<div class="nocov"><span class="num"><pre>134</pre></span><pre>            form.save()</pre></div>
+<div class="nocov"><span class="num"><pre>135</pre></span><pre>            return HttpResponseRedirect(INDEX_PAGE)</pre></div>
+<div class="nocov"><span class="num"><pre>136</pre></span><pre>    else:</pre></div>
+<div class="nocov"><span class="num"><pre>137</pre></span><pre>        form = forms.MilestoneForm(initial = {'baby' : baby_id})</pre></div>
+<div class="nocov"><span class="num"><pre>138</pre></span><pre>    return simple.direct_to_template(request, 'timeline/milestone_form.html',</pre></div>
+<div class="nocov"><span class="num"><pre>139</pre></span><pre>                              extra_context={'form': form,</pre></div>
+<div class="nocov"><span class="num"><pre>140</pre></span><pre>                                             'title': &quot;Meilenstein hinzufügen&quot;,</pre></div>
+<div class="nocov"><span class="num"><pre>141</pre></span><pre>                                             'baby_id' : baby_id,</pre></div>
+<div class="nocov"><span class="num"><pre>142</pre></span><pre>                                             'action': &quot;/baby/addmilestone/%s&quot; %baby_id})</pre></div>
+<div class="skip"><span class="num"><pre>143</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>144</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre>145</pre></span><pre>@user_owns_milestone</pre></div>
+<div class="cov"><span class="num"><pre>146</pre></span><pre>def serve_image(request, milestone_id):</pre></div>
+<div class="nocov"><span class="num"><pre>147</pre></span><pre>    ms = models.Milestone.objects.get(pk=milestone_id)</pre></div>
+<div class="nocov"><span class="num"><pre>148</pre></span><pre>    fname = ms.image.path</pre></div>
+<div class="nocov"><span class="num"><pre>149</pre></span><pre>    return download_file(fname, ms.image.name, &quot;application/image&quot;)</pre></div>
+<div class="skip"><span class="num"><pre>150</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>151</pre></span><pre>def download_file(path, name, type, file=False):</pre></div>
+<div class="nocov"><span class="num"><pre>152</pre></span><pre>    file = open(path)</pre></div>
+<div class="nocov"><span class="num"><pre>153</pre></span><pre>    fcont = &quot;&quot;</pre></div>
+<div class="nocov"><span class="num"><pre>154</pre></span><pre>    for line in file:</pre></div>
+<div class="nocov"><span class="num"><pre>155</pre></span><pre>        fcont += line</pre></div>
+<div class="nocov"><span class="num"><pre>156</pre></span><pre>    response = HttpResponse(fcont, mimetype=type)</pre></div>
+<div class="nocov"><span class="num"><pre>157</pre></span><pre>    if file:</pre></div>
+<div class="nocov"><span class="num"><pre>158</pre></span><pre>        response['Content-Disposition'] = 'attachment; filename=%s' %name</pre></div>
+<div class="nocov"><span class="num"><pre>159</pre></span><pre>    return response</pre></div>
+<div class="skip"><span class="num"><pre>160</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre>161</pre></span><pre>@login_required</pre></div>
+<div class="cov"><span class="num"><pre>162</pre></span><pre>@user_owns_baby</pre></div>
+<div class="cov"><span class="num"><pre>163</pre></span><pre>def export_baby(request, baby_id):</pre></div>
+<div class="nocov"><span class="num"><pre>164</pre></span><pre>    locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')</pre></div>
+<div class="nocov"><span class="num"><pre>165</pre></span><pre>    pdf = export.CairoExporter(export.ConstraintPosFactory())</pre></div>
+<div class="nocov"><span class="num"><pre>166</pre></span><pre>    prefix = settings.USER_FILES + &quot;/exports/&quot;</pre></div>
+<div class="nocov"><span class="num"><pre>167</pre></span><pre>    baby = models.Baby.objects.get(pk=baby_id)</pre></div>
+<div class="nocov"><span class="num"><pre>168</pre></span><pre>    fname = pdf.export(baby, prefix, &quot;&quot;)</pre></div>
+<div class="nocov"><span class="num"><pre>169</pre></span><pre>    return download_file(fname, fname, &quot;application/pdf&quot;, True)</pre></div>
+</div>
+</body>
+</html>

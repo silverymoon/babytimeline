@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="." method="post">
+{% include "form_snippet.html"%}
+<p>
+<input type="submit" class="button" value="{% trans "Abschicken"%}"/>
+</p>
+{% endblock %}

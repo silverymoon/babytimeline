@@ -1,0 +1,34 @@
+Problem definition: a web tool to document and export the milestones in baby's development.
+
+Requirements Alpha:
+Zu jeder Timeline kann man mehrere feste und freie Events und Fotos mit Datum 
+anlegen. Länge der Timeline ist erstmal auf 1 Jahr begrenzt. Jede Timeline 
+kann man als SVG exportieren. - ohne Web als Proof-of-concept
+
+Requirements Beta:
+Es gibt Nutzer, die Timelines anlegen können pro Baby. Timelines kann man auch
+als Javascript anschauen. Privacy-Settings sind wichtig, zwischen den Extremen
+Facebook-no-privacy-ever und meine-Daten-gehören-mir-keiner-sieht-sie. 
+Bugreporting-Formulare sollte es sofort geben. Beim Launch sollte es auch 
+eine Doku und Tour geben, auf Deutsch und Englisch.
+
+Requirements später:
+Später kann man noch mehr Exportformate und Themes dafür machen. Evtl. 
+kann man per Mail oder beim Login daran erinnern, gewisse Events zu checken 
+bzw. Fotos hochzuladen. Später können noch Foren und Gruppen hinzukommen. 
+Vielleicht will man auch als RSS exportieren bzw. an Twitter / Facebook pushen.
+Möglicherweise will man manche Sachen als Premium Feature verkaufen!
+
+Architektur:
+Model: User (visibility!) / Timeline / Milestones / Events / Photos
+Exporter: PDF / Javascript / JPG
+
+entwickeln auf Django 1.1 / Python 2.6, hosten auf vserver
+wenn abgeht, bei Google apps: Google App Engine Python 2.5, Django 0.96. 500 MB storage, 5 Mio Pageviews
+
+Python Coding Conventions
+Testabdeckung Ziel 90% beim Einchecken! -> hg hook?
+Fabric fürs Deployment
+Refactoring python -> pymacs und romacs
+nose für unit tests!
+

@@ -1,0 +1,68 @@
+# This Python file uses the following encoding: utf-8
+import svgfig
+
+#import model
+
+TOP_X = 0
+TOP_Y = 0
+BOT_X = 100
+BOT_Y = 100
+MID_X = BOT_X / 2
+MID_Y = BOT_Y / 2
+
+class SVGExporter:
+
+    def __init__(self):
+        svgfig.Text.defaults["fill"] = "white"
+        self.figure = svgfig.Fig()
+
+    def gradient(self, id, color_1="black", color_2="white", trans="rotate(90)"):
+        return svgfig.SVG("linearGradient",
+                          svgfig.SVG("stop", offset="5%", stop_color=color_1),
+                          svgfig.SVG("stop", offset="95%", stop_color=color_2),
+                          id=id,
+                          gradientTransform=trans)
+
+    def create_defs(self):
+        return svgfig.SVG("defs",
+                          self.gradient("grad_wb"),
+                          self.gradient("grad_bw", color_1 = "white", color_2 = "black"))
+
+    def draw_background(self):
+        self.figure.d.append(svgfig.Rect(x1=TOP_X, y1=TOP_X, x2=BOT_X, y2=MID_Y, stroke_width=0, fill="url(#grad_bw)"))
+        self.figure.d.append(svgfig.Rect(x1=TOP_X, y1=MID_Y, x2=BOT_X, y2=BOT_Y, stroke_width=0, fill="url(#grad_wb)"))
+
+    def draw_timeline(self):
+        self.figure.d.append(svgfig.LineAxis(x1=TOP_X, y1=MID_Y, x2=BOT_X, y2=MID_Y, miniticks=False, stroke="white", stroke_width="0.5", text_attr={"fill" : "white", "text-anchor" : "middle"}, ticks=self.create_ticks()))
+        self.draw_events()        
+        self.draw_photos()
+
+    def create_ticks(self):
+        return {0.32 : "Februar",
+                0.60 : u"März",
+                0.91 : "April"}
+
+
+    def draw_photos(self):
+        self.figure.d.append(self.draw_photo(81, "/home/britta/Downloads/kuerbis.jpg"))
+
+    def draw_photo(self, where, file):
+        return svgfig.Fig(svgfig.VLine(MID_Y - 13, MID_Y, where),
+            svgfig.SVG("image", x=where, y=MID_Y - 16, width=80, height=100, xlink__href = file))
+
+    def draw_events(self):
+        self.figure.d.append(self.draw_event(49, "17. Februar: 4000g, 48 cm"))
+
+    def draw_event(self, where, text):
+        return svgfig.Fig(svgfig.VLine(MID_Y, MID_Y + 10, where),
+            svgfig.Text(where, MID_Y + 15, text, text_anchor="middle"))
+
+    def export(self):
+        self.draw_background()
+        self.draw_timeline()
+
+        canvas = svgfig.canvas("g", self.create_defs(), self.figure.SVG(), style="stroke: white;fill: white; stroke-width: 0.5; stroke-linecap: round; stroke-linejoin: round")
+        canvas.firefox("pic.svg")
+        
+if __name__ == "__main__":
+    SVGExporter().export()

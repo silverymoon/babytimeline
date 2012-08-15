@@ -1,0 +1,19 @@
+{% load tltagutils %}
+<h3><a name="{{ baby.name }}" id="baby_{{ baby.id }}" class="nounderline">
+{% blocktrans with baby.name as name and baby.birth_data as bdate %}
+{{ name }}, geboren am {{ bdate }}.
+{% endblocktrans %}
+</a></h3>
+<div class="clear" id="babyinfo_{{baby.id}}">
+<div class="buttons">
+{% icon "" baby.pdfurl "export_" _("Timeline exportieren") "print" %}
+{% icon baby.idstr "/baby/addmilestone/" "addmilestone_" _("Meilenstein hinzufügen") "plusthick" %}
+{% icon baby.idstr "/baby/edit/" "baby_edit_" _("Baby editieren") "pencil" %}
+{% icon baby.idstr "/baby/delete/" "baby_delete_" _("Baby löschen") "trash" %}
+</div>
+<div id="babydetails_{{ baby.id}}">
+{% for milestone in baby.get_sorted_milestones %}
+{% include "timeline/milestone.html" %}
+{% endfor %}
+</div>
+</div>

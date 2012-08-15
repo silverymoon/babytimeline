@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-18 08:50+0000\n"
+"PO-Revision-Date: 2010-07-18 08:53\n"
+"Last-Translator: <silverymoon@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.5.2\n"
+
+#: settings.py:35
+msgid "German"
+msgstr "Deutsch"
+
+#: settings.py:36
+msgid "English"
+msgstr "Englisch"
+
+#: templates/404.html:4
+msgid "Leider konnte ich die Seite nicht finden :("
+msgstr "Leider konnte ich die Seite nicht finden :("
+
+#: templates/500.html:4
+msgid ""
+"\n"
+"Ui, irgendwas ist da ganz doll daneben gegangen! Möchtest Du vielleicht eine\n"
+"<a href=\"/contact/\">Nachricht</a> verschicken und sagen, was Du eigentlich erwartet hast?\n"
+msgstr ""
+"\n"
+"Ui, irgendwas ist da ganz doll daneben gegangen! Möchtest Du vielleicht eine\n"
+"<a href=\"/contact/\">Nachricht</a> verschicken und sagen, was Du eigentlich erwartet hast?\n"
+
+#: templates/base.html:23
+msgid "Neuigkeiten"
+msgstr "Neuigkeiten"
+
+#: templates/base.html:24 templates/base.html.py:56
+msgid "Kontakt"
+msgstr "Kontakt"
+
+#: templates/base.html:25
+msgid "Über Babytimeline"
+msgstr "Über Babytimeline"
+
+#: templates/base.html:26
+msgid "Datenschutz"
+msgstr "Datenschutz"
+
+#: templates/base.html:27
+msgid "Impressum"
+msgstr "Impressum"
+
+#: templates/base.html:32
+msgid "Meilensteine Deines Babys"
+msgstr "Meilensteine Deines Babys"
+
+#: templates/base.html:54
+msgid "Meilensteine festhalten"
+msgstr "Meilensteine festhalten"
+
+#: templates/base.html:55
+msgid "Mit Babytimeline kannst Du ganz einfach Fotos von Deinem Baby hochladen, eintragen, was es gerade macht, und das ganze dann als PDF exportieren. PDFs kann man ausdrucken und verschenken, oder per Email verschicken, oder oder oder... "
+msgstr "Mit Babytimeline kannst Du ganz einfach Fotos von Deinem Baby hochladen, eintragen, was es gerade macht, und das ganze dann als PDF exportieren. PDFs kann man ausdrucken und verschenken, oder per Email verschicken, oder oder oder..."
+
+#: templates/base.html:57
+msgid "Funktioniert irgendwas nicht? Oder gibt es ein Feature, was Du Dir ganz doll wünscht? Dann <a href=\"/contact/\">kontaktiere</a> mich einfach! "
+msgstr "Funktioniert irgendwas nicht? Oder gibt es ein Feature, was Du Dir ganz doll wünscht? Dann <a href=\"/contact/\">kontaktiere</a> mich einfach!"
+
+#: templates/base.html:59
+msgid "Eingeloggt"
+msgstr "Eingeloggt"
+
+#: templates/base.html:60
+#, python-format
+msgid "Du bist eingeloggt als %(user)s. <a href=\"/accounts/password/change/\">Passwort ändern</a> oder <a href=\"/accounts/logout/\">ausloggen."
+msgstr "Du bist eingeloggt als %(user)s. <a href=\"/accounts/password/change/\">Passwort ändern</a> oder <a href=\"/accounts/logout/\">ausloggen."
+
+#: templates/contact_form/contact_form.html:7
+msgid "Abschicken"
+msgstr ""
+"Ui, irgendwas ist da ganz doll daneben gegangen! Möchtest Du vielleicht eine\n"
+"<a href=\"/contact/\">Nachricht</a> verschicken und sagen, was Du eigentlich erwartet hast?"
+
+#: templates/contact_form/contact_form_sent.html:4
+msgid "Deine Nachricht wurde versendet. Vielen Dank für Deine Hilfe!"
+msgstr "Deine Nachricht wurde versendet. Vielen Dank für Deine Hilfe!"
+
+#: templates/registration/activate.html:5
+msgid " Dein Account ist jetzt aktiv! Klick <a href=\"/addbaby/\">hier</a>, um Dich einzuloggen und dann ein Baby anzulegen.\n"
+msgstr "Dein Account ist jetzt aktiv! Klick <a href=\"/addbaby/\">hier</a>, um Dich einzuloggen und dann ein Baby anzulegen.\n"
+
+#: templates/registration/activate.html:8
+#, python-format
+msgid ""
+"\n"
+"Der Schlüssel ist leider nur für einen Gebrauch und dann %(expiration_days)s Tage gültig. Wenn Du schon einmal drauf geklickt hast, sollte Dein Account aber aktiv sein und alles klappen. Log Dich einfach <a href=\"/accounts/login/\">hier</a> ein.\n"
+msgstr ""
+"\n"
+"Der Schlüssel ist leider nur für einen Gebrauch und dann %(expiration_days)s Tage gültig. Wenn Du schon einmal drauf geklickt hast, sollte Dein Account aber aktiv sein und alles klappen. Log Dich einfach <a href=\"/accounts/login/\">hier</a> ein.\n"
+
+#: templates/registration/login.html:8
+msgid "Mit bestehendem Account einloggen"
+msgstr "Mit bestehendem Account einloggen"
+
+#: templates/registration/login.html:17
+msgid "Login mit anderen Diensten"
+msgstr "Login mit anderen Diensten"
+
+#: templates/registration/login.html:26
+msgid ""
+"\n"
+"Passwort vergessen? Dann <a href=\"/accounts/password/reset/\">setze es zurück.</a> Du hast noch keinen Account? <a href=\"/accounts/register/\">Hier</a> kannst Du Dich registrieren.\n"
+msgstr ""
+"\n"
+"Passwort vergessen? Dann <a href=\"/accounts/password/reset/\">setze es zurück.</a> Du hast noch keinen Account? <a href=\"/accounts/register/\">Hier</a> kannst Du Dich registrieren.\n"
+
+#: templates/registration/logout.html:5
+msgid "Du bist jetzt ausgeloggt."
+msgstr "Du bist jetzt ausgeloggt."
+
+#: templates/registration/logout.html:7
+msgid "Wieder einloggen."
+msgstr "Wieder einloggen."
+
+#: templates/registration/password_change_done.html:4
+#: templates/registration/password_reset_complete.html:4
+msgid "Dein Passwort wurde erfolgreich geändert."
+msgstr "Dein Passwort wurde erfolgreich geändert."
+
+#: templates/registration/password_change_form.html:7
+#: templates/registration/password_reset_confirm.html:8
+msgid "Passwort ändern"
+msgstr "Passwort ändern"
+
+#: templates/registration/password_reset_confirm.html:11
+msgid "Leider ist dieser Link nicht gültig."
+msgstr "Leider ist dieser Link nicht gültig."
+
+#: templates/registration/password_reset_done.html:4
+msgid "Eine Email mit Informationen zum neuen Passwort wurde an Dich versendet."
+msgstr "Eine Email mit Informationen zum neuen Passwort wurde an Dich versendet."
+
+#: templates/registration/password_reset_email.html:1
+#, python-format
+msgid ""
+"\n"
+"Um Dein Passwort bei Babytimeline.de zurückzusetzen, benutze bitte diesen Link: %(protocol)s://%(domain)s/accounts/password/reset/confirm/%(uid)s-%(token)s/\n"
+msgstr ""
+"\n"
+"Um Dein Passwort bei Babytimeline.de zurückzusetzen, benutze bitte diesen Link: %(protocol)s://%(domain)s/accounts/password/reset/confirm/%(uid)s-%(token)s/\n"
+
+#: templates/registration/password_reset_form.html:4
+msgid "Passwort zurücksetzen"
+msgstr "Passwort zurücksetzen"
+
+#: templates/registration/password_reset_form.html:8
+msgid "Zurücksetzen"
+msgstr "Zurücksetzen"
+
+#: templates/registration/registration_complete.html:4
+msgid "Du hast Dich erfolgreich registriert! Eine Email mit weiteren Informationen, mit der Du Deinen Account aktivierun kannst, wurde an Deine angegebene Email-Adresse versendet."
+msgstr "Du hast Dich erfolgreich registriert! Eine Email mit weiteren Informationen, mit der Du Deinen Account aktivierun kannst, wurde an Deine angegebene Email-Adresse versendet."
+
+#: templates/registration/registration_form.html:7
+msgid "Registrieren"
+msgstr "Registrieren"
+
+#: templates/socialregistration/setup.html:4
+msgid "Username und Emailadresse"
+msgstr "Username und Emailadresse"
+
+#: templates/socialregistration/setup.html:6
+msgid "Damit Du babytimeline.de benutzen kannst, musst Du Dir noch einen Usernamen ausdenken und eine Email-Adresse angeben. Diese Daten geben die anderen Dienste leider nicht weiter. Vielen Dank!"
+msgstr "Damit Du babytimeline.de benutzen kannst, musst Du Dir noch einen Usernamen ausdenken und eine Email-Adresse angeben. Diese Daten geben die anderen Dienste leider nicht weiter. Vielen Dank!"
+
+#: templates/timeline/baby.html:3
+#, python-format
+msgid ""
+"\n"
+"%(name)s, geboren am %(bdate)s.\n"
+msgstr ""
+"\n"
+"%(name)s, geboren am %(bdate)s.\n"
+
+#: templates/timeline/baby.html:9
+msgid "Timeline exportieren"
+msgstr "Timeline exportieren"
+
+#: templates/timeline/baby.html:10 timeline/views.py:141
+msgid "Meilenstein hinzufügen"
+msgstr "Meilenstein hinzufügen"
+
+#: templates/timeline/baby.html:11 timeline/views.py:88
+msgid "Baby editieren"
+msgstr "Baby editieren"
+
+#: templates/timeline/baby.html:12 timeline/views.py:97
+msgid "Baby löschen"
+msgstr "Baby löschen"
+
+#: templates/timeline/baby_confirm_delete.html:5
+#, python-format
+msgid ""
+"\n"
+"Willst Du wirklich das Baby %(name)s löschen?\n"
+msgstr ""
+"\n"
+"Willst Du wirklich das Baby %(name)s löschen?\n"
+
+#: templates/timeline/baby_form.html:14
+msgid "Speichern"
+msgstr "Speichern"
+
+#: templates/timeline/baby_form.html:16
+#: templates/timeline/milestone_form.html:15
+msgid "Hinzufügen"
+msgstr "Hinzufügen"
+
+#: templates/timeline/index.html:14
+#, python-format
+msgid ""
+"\n"
+"Hallo, %(user)s. Hier sind Deine Timelines.\n"
+msgstr ""
+"\n"
+"Hallo, %(user)s. Hier sind Deine Timelines.\n"
+
+#: templates/timeline/index.html:19 timeline/views.py:70
+msgid "Baby hinzufügen"
+msgstr "Baby hinzufügen"
+
+#: templates/timeline/milestone.html:5 timeline/views.py:126
+msgid "Meilenstein editieren"
+msgstr "Meilenstein editieren"
+
+#: templates/timeline/milestone.html:6 timeline/views.py:108
+msgid "Meilenstein löschen"
+msgstr "Meilenstein löschen"
+
+#: templates/timeline/milestone_confirm_delete.html:6
+msgid "Willst Du wirklich dieses Foto löschen?"
+msgstr "Willst Du wirklich dieses Foto löschen?"
+
+#: templates/timeline/milestone_confirm_delete.html:9
+#, python-format
+msgid ""
+"\n"
+"Willst Du wirklich den Meilenstein %(text)s löschen?\n"
+msgstr ""
+"\n"
+"Willst Du wirklich den Meilenstein %(text)s löschen?\n"
+
+#: templates/timeline/milestone_form.html:13
+msgid "Speichern "
+msgstr "Speichern "
+
+#: templates/timeline/not_allowed.html:4
+msgid "Diese Daten darfst Du Dir leider nicht anschauen."
+msgstr "Diese Daten darfst Du Dir leider nicht anschauen."
+
+#: timeline/views.py:57
+msgid "Willkommen bei Babytimeline"
+msgstr "Willkommen bei Babytimeline"

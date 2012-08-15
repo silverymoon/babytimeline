@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>babytimeline.timeline.models</title>
+</head>
+<body>
+babytimeline.timeline.models
+<style>
+.coverage pre {float: left; margin: 0px 1em; border: none;
+               padding: 0px; }
+.num pre { margin: 0px }
+.nocov, .nocov pre {background-color: #faa}
+.cov, .cov pre {background-color: #cfc}
+div.coverage div { clear: both; height: 1.1em}
+</style>
+<div class="stats">
+Covered: 26 lines<br/>
+Missed: 64 lines<br/>
+Skipped 19 lines<br/>
+Percent: 28 %<br/>
+
+</div>
+<div class="coverage">
+<div class="skip"><span class="num"><pre>  1</pre></span><pre># This Python file uses the following encoding: utf-8</pre></div>
+<div class="nocov"><span class="num"><pre>  2</pre></span><pre>from django.utils.translation import ugettext_lazy as _</pre></div>
+<div class="nocov"><span class="num"><pre>  3</pre></span><pre>from django.db import models</pre></div>
+<div class="nocov"><span class="num"><pre>  4</pre></span><pre>from django.conf import settings</pre></div>
+<div class="nocov"><span class="num"><pre>  5</pre></span><pre>from django.contrib.auth.models import User</pre></div>
+<div class="nocov"><span class="num"><pre>  6</pre></span><pre>from django.core.files.storage import FileSystemStorage</pre></div>
+<div class="skip"><span class="num"><pre>  7</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre>  8</pre></span><pre>import Image</pre></div>
+<div class="nocov"><span class="num"><pre>  9</pre></span><pre>import os.path</pre></div>
+<div class="skip"><span class="num"><pre> 10</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 11</pre></span><pre>fpath = settings.USER_FILES + '/uploads/baby_photos/'</pre></div>
+<div class="nocov"><span class="num"><pre> 12</pre></span><pre>storage = FileSystemStorage(location=fpath, base_url=&quot;&quot;)</pre></div>
+<div class="skip"><span class="num"><pre> 13</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 14</pre></span><pre>def uploader(instance, fname):</pre></div>
+<div class="nocov"><span class="num"><pre> 15</pre></span><pre>    return &quot;%d_%s&quot; %(instance.baby.user.id, fname)</pre></div>
+<div class="skip"><span class="num"><pre> 16</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 17</pre></span><pre>class Baby(models.Model):</pre></div>
+<div class="nocov"><span class="num"><pre> 18</pre></span><pre>    birth_date = models.DateTimeField()</pre></div>
+<div class="nocov"><span class="num"><pre> 19</pre></span><pre>    weight_in_g = models.IntegerField(&quot;Gewicht in Gramm&quot;)</pre></div>
+<div class="nocov"><span class="num"><pre> 20</pre></span><pre>    size_in_cm = models.IntegerField(&quot;Größe in cm&quot;)</pre></div>
+<div class="nocov"><span class="num"><pre> 21</pre></span><pre>    name = models.CharField(&quot;Name&quot;, max_length=64)</pre></div>
+<div class="nocov"><span class="num"><pre> 22</pre></span><pre>    user = models.ForeignKey(User)</pre></div>
+<div class="skip"><span class="num"><pre> 23</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 24</pre></span><pre>    def birth_data(self):</pre></div>
+<div class="cov"><span class="num"><pre> 25</pre></span><pre>        return &quot;%s: %dg, %dcm&quot; %(self.birth_date.strftime(&quot;%x&quot;), self.weight_in_g, self.size_in_cm)</pre></div>
+<div class="skip"><span class="num"><pre> 26</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 27</pre></span><pre>    def __unicode__(self):</pre></div>
+<div class="nocov"><span class="num"><pre> 28</pre></span><pre>        return self.name</pre></div>
+<div class="skip"><span class="num"><pre> 29</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 30</pre></span><pre>    def idstr(self):</pre></div>
+<div class="nocov"><span class="num"><pre> 31</pre></span><pre>        return str(self.id)</pre></div>
+<div class="skip"><span class="num"><pre> 32</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 33</pre></span><pre>    def get_sorted_milestones(self):</pre></div>
+<div class="cov"><span class="num"><pre> 34</pre></span><pre>        milestones = list(self.milestone_set.all())</pre></div>
+<div class="cov"><span class="num"><pre> 35</pre></span><pre>        milestones.sort(lambda a, b: cmp(a.date.toordinal(), b.date.toordinal()))</pre></div>
+<div class="cov"><span class="num"><pre> 36</pre></span><pre>        return milestones</pre></div>
+<div class="skip"><span class="num"><pre> 37</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 38</pre></span><pre>    def pdfurl(self):</pre></div>
+<div class="nocov"><span class="num"><pre> 39</pre></span><pre>        return &quot;/baby/export/%d.pdf&quot; % self.id</pre></div>
+<div class="skip"><span class="num"><pre> 40</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 41</pre></span><pre>class Milestone(models.Model):</pre></div>
+<div class="nocov"><span class="num"><pre> 42</pre></span><pre>    MILESTONE_CHOICES = (</pre></div>
+<div class="nocov"><span class="num"><pre> 43</pre></span><pre>        (u'SMILE', _(u'ich lächele!')),</pre></div>
+<div class="nocov"><span class="num"><pre> 44</pre></span><pre>        (u'SLEEP', _(u'ich schlafe länger als 6 Stunden')),</pre></div>
+<div class="nocov"><span class="num"><pre> 45</pre></span><pre>        (u'ROLL', _(u'ich drehe mich auf den Rücken')),</pre></div>
+<div class="nocov"><span class="num"><pre> 46</pre></span><pre>        (u'LAUGH', _(u'ich kann lachen')),</pre></div>
+<div class="nocov"><span class="num"><pre> 47</pre></span><pre>        (u'GRAB', _(u'ich greife')),</pre></div>
+<div class="nocov"><span class="num"><pre> 48</pre></span><pre>        (u'EATS', _(u'ich darf was essen')),</pre></div>
+<div class="nocov"><span class="num"><pre> 49</pre></span><pre>        (u'CRAWL', _(u'ich kann krabbeln!')),</pre></div>
+<div class="nocov"><span class="num"><pre> 50</pre></span><pre>        (u'SIT', _(u'ich kann sitzen')),</pre></div>
+<div class="nocov"><span class="num"><pre> 51</pre></span><pre>        (u'STAND', _(u'ich kann aufstehen')),</pre></div>
+<div class="nocov"><span class="num"><pre> 52</pre></span><pre>        (u'PINCER', _(u'ich greife mit Pinzettengriff')),</pre></div>
+<div class="nocov"><span class="num"><pre> 53</pre></span><pre>        (u'GUGU', _(u'ich spiele Kuckuck!')),</pre></div>
+<div class="nocov"><span class="num"><pre> 54</pre></span><pre>        (u'WALK', _(u'ich kann laufen!')),</pre></div>
+<div class="nocov"><span class="num"><pre> 55</pre></span><pre>    )</pre></div>
+<div class="nocov"><span class="num"><pre> 56</pre></span><pre>    TYPE_CHOICES =(</pre></div>
+<div class="nocov"><span class="num"><pre> 57</pre></span><pre>        (u'BIRTH', ''),</pre></div>
+<div class="nocov"><span class="num"><pre> 58</pre></span><pre>        (u'FREE', ''),</pre></div>
+<div class="nocov"><span class="num"><pre> 59</pre></span><pre>        (u'PHOTO', ''),</pre></div>
+<div class="nocov"><span class="num"><pre> 60</pre></span><pre>    )</pre></div>
+<div class="nocov"><span class="num"><pre> 61</pre></span><pre>    date = models.DateField()</pre></div>
+<div class="nocov"><span class="num"><pre> 62</pre></span><pre>    note = models.CharField(&quot;Freitext&quot;, max_length=512, blank=True)</pre></div>
+<div class="nocov"><span class="num"><pre> 63</pre></span><pre>    type = models.CharField(max_length=8, choices=TYPE_CHOICES + MILESTONE_CHOICES)</pre></div>
+<div class="nocov"><span class="num"><pre> 64</pre></span><pre>    image = models.ImageField(&quot;Bild&quot;, upload_to=uploader, storage=storage, blank=True)</pre></div>
+<div class="nocov"><span class="num"><pre> 65</pre></span><pre>    baby = models.ForeignKey(Baby)</pre></div>
+<div class="skip"><span class="num"><pre> 66</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 67</pre></span><pre>    def get_text(self):</pre></div>
+<div class="cov"><span class="num"><pre> 68</pre></span><pre>        if not self.is_photo():</pre></div>
+<div class="cov"><span class="num"><pre> 69</pre></span><pre>            if self.type == &quot;FREE&quot; or self.type == &quot;BIRTH&quot;:</pre></div>
+<div class="cov"><span class="num"><pre> 70</pre></span><pre>                return self.note</pre></div>
+<div class="cov"><span class="num"><pre> 71</pre></span><pre>            return self.get_type_display()</pre></div>
+<div class="cov"><span class="num"><pre> 72</pre></span><pre>        return &quot;&quot;</pre></div>
+<div class="skip"><span class="num"><pre> 73</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 74</pre></span><pre>    def idstr(self):</pre></div>
+<div class="nocov"><span class="num"><pre> 75</pre></span><pre>        return str(self.id)</pre></div>
+<div class="skip"><span class="num"><pre> 76</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 77</pre></span><pre>    def get_text_date(self):</pre></div>
+<div class="cov"><span class="num"><pre> 78</pre></span><pre>        if not self.is_photo():</pre></div>
+<div class="cov"><span class="num"><pre> 79</pre></span><pre>            text = &quot;&quot;</pre></div>
+<div class="cov"><span class="num"><pre> 80</pre></span><pre>            if self.type != &quot;BIRTH&quot;:</pre></div>
+<div class="cov"><span class="num"><pre> 81</pre></span><pre>                text = self.date.strftime(&quot;%d.: &quot;)</pre></div>
+<div class="cov"><span class="num"><pre> 82</pre></span><pre>            return text + self.get_text()</pre></div>
+<div class="cov"><span class="num"><pre> 83</pre></span><pre>        return &quot;&quot;</pre></div>
+<div class="skip"><span class="num"><pre> 84</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 85</pre></span><pre>    def resize_height(self, height):</pre></div>
+<div class="cov"><span class="num"><pre> 86</pre></span><pre>        if self.is_photo():</pre></div>
+<div class="cov"><span class="num"><pre> 87</pre></span><pre>            width = height / self.image.height * self.image.width</pre></div>
+<div class="cov"><span class="num"><pre> 88</pre></span><pre>            return (width, height)</pre></div>
+<div class="nocov"><span class="num"><pre> 89</pre></span><pre>        return False</pre></div>
+<div class="skip"><span class="num"><pre> 90</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 91</pre></span><pre>    def is_photo(self):</pre></div>
+<div class="cov"><span class="num"><pre> 92</pre></span><pre>        return self.type == 'PHOTO'</pre></div>
+<div class="skip"><span class="num"><pre> 93</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre> 94</pre></span><pre>    def get_png_file(self):</pre></div>
+<div class="cov"><span class="num"><pre> 95</pre></span><pre>        if self.is_photo():</pre></div>
+<div class="cov"><span class="num"><pre> 96</pre></span><pre>            fname = self.image.path</pre></div>
+<div class="cov"><span class="num"><pre> 97</pre></span><pre>            if not fname.endswith(&quot;.png&quot;):</pre></div>
+<div class="cov"><span class="num"><pre> 98</pre></span><pre>                png = fname + &quot;.png&quot;</pre></div>
+<div class="cov"><span class="num"><pre> 99</pre></span><pre>                if not os.path.isfile(png):</pre></div>
+<div class="nocov"><span class="num"><pre>100</pre></span><pre>                    im = Image.open(fname)</pre></div>
+<div class="nocov"><span class="num"><pre>101</pre></span><pre>                    if im.format != &quot;PNG&quot;:</pre></div>
+<div class="nocov"><span class="num"><pre>102</pre></span><pre>                        im.save(png)</pre></div>
+<div class="cov"><span class="num"><pre>103</pre></span><pre>                return png</pre></div>
+<div class="nocov"><span class="num"><pre>104</pre></span><pre>            return fname</pre></div>
+<div class="nocov"><span class="num"><pre>105</pre></span><pre>        return &quot;&quot;</pre></div>
+<div class="skip"><span class="num"><pre>106</pre></span><pre></pre></div>
+<div class="nocov"><span class="num"><pre>107</pre></span><pre>    def __unicode__(self):</pre></div>
+<div class="cov"><span class="num"><pre>108</pre></span><pre>        return self.date.strftime(&quot;%d.%m.&quot;) + &quot; &quot; + self.get_text()</pre></div>
+<div class="skip"><span class="num"><pre>109</pre></span><pre></pre></div>
+</div>
+</body>
+</html>

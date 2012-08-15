@@ -1,0 +1,186 @@
+/* Reset all white-space to 0 for consistency across browsers */
+* { 
+    margin:0px; 
+    padding:0px; 
+}
+
+/* Default to some sans-serif font at a specific size */
+body { 
+    font-family: Verdana, Arial, sans-serif; 
+    font-size:12px;  
+}
+
+/* Get some padding between paragraphs and some line spacing */
+p { 
+    padding-bottom:8px; 
+    line-height:1.4em; 
+}
+
+/* Put some padding back onto our list elements */
+ul, ol { 
+    margin-left: 10px; 
+}
+li  { 
+    margin-left:10px; 
+    padding-left:10px; 
+}
+
+/* Bye bye ugly blue border */
+a img { 
+    border:0px; 
+}
+
+/* No dots around clicked links */
+a, a:active { 
+    outline: none; 
+} 
+
+/* Class to any floated elements */
+.clear { 
+    clear:both; 
+}
+
+/** END RESETS **/
+
+
+/* Set the width to 900 pixels, centered on the page with a little padding on top */
+#container {
+    margin-top: 10; 
+}
+
+/* 90 pixels to work with at the top - positioned relative so that we can absolutely position our header elements easily */
+#header { 
+    background-color: #fff173; /* color 5 */
+    height:115px; 
+    position:relative; 
+    margin-bottom:30px; 
+}
+#logo { 
+    position:absolute; 
+    left:75px; 
+    top:0px; 
+}
+#tagline { 
+    position:absolute; 
+    left:75px; 
+    top:95px; 
+    color:#70e500; /* color 2*/
+    font-size:14px; 
+    font-weight:bold; 
+}
+
+/* Quick right-aligned tab-looking text menu */
+/* Make sure to be explicit with the padding and margin on our ul and li elements so we can change the defaults later on as necessary */
+#main_menu { 
+    position: absolute;
+    top: 87px;
+    right: 20px;
+    height:26px; 
+    margin-bottom: 3px;
+}
+#main_menu ul { 
+    display:block; 
+    float:right; 
+    list-style-type:none; 
+    padding:0px; 
+    margin:0px;  
+}
+#main_menu li { 
+    display:block; 
+    float:left; 
+    margin:0 5px; 
+    padding:0px;
+}
+#main_menu a {
+    display:block;
+    float:left; /* Needed for IE */
+    padding:5px 20px;
+    background-color: #d2f700; /* color 1*/
+    text-decoration:none;
+    color: #000000; /* black*/
+}
+#main_menu a:hover { 
+    color: #ffffff; /* white */
+    background-color:#9c02a7; /* color4 */
+}
+
+#content_container {
+   padding:10px 0px;
+   border-bottom: 3px dotted #70e500; /* color 2*/
+   /* Do the IE hack to get a minimum content container height */
+   height:auto !important;
+   height:200px;
+   min-height:200px;
+}
+
+  /* Floating left and then right means that we can play with the widths of the sidebar and content separately and not worry about explicitly setting the space between */
+#sidebar { 
+    float:right; 
+    width:200px;
+    padding: 0 20px 0 2px;
+}
+.sidebar_heading { 
+    padding:0 2px 0 6px; 
+    background-color: #d2f700; /* color */
+    margin-bottom: 2px;
+}
+.sidebar_body { 
+    padding-bottom:10px;
+}
+#content { 
+    margin-left: 90px;
+    float:left; 
+    width:650px; 
+}
+
+#footer { 
+    height:40px;
+    margin: 6px 20px 0 0;
+    position:relative; 
+}
+#copyright { 
+    position:absolute; 
+    top:5px; 
+    right:0px; 
+    font-size:10px; 
+    color:9c02a7; /* color 2*/
+}
+
+/* Content Styles */
+
+h1 { 
+    color: #9c02a7; /*color 1*/
+    padding-bottom:15px; 
+    font-size:26px; 
+}
+.content .info { 
+    position:relative; 
+    top:-17px; 
+    font-size:11px; 
+    color:#9c02a7; /*color 2*/
+    font-style:italic; 
+}
+.content img { 
+    float:left; 
+    padding:0px 14px 10px 0px;
+}
+a:visited {
+    color: #9c02a7;
+}
+a:hover, a:active {
+    color: #ffe500;
+}
+a {
+    color: #70e500;
+}
+ul.ui-icons li {
+    margin: 2px; 
+    float: left;  
+    padding: 1px 0; 
+    cursor: pointer; 
+    list-style: none;
+}
+ul.ui-icons span.ui-icon {
+    float: left; 
+    margin: 0 1px;
+}

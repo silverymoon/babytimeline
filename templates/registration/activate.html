@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if account %}
+{% blocktrans %} Dein Account ist jetzt aktiv! Klick <a href="/addbaby/">hier</a>, um Dich einzuloggen und dann ein Baby anzulegen.
+{% endblocktrans %}
+{% else %}
+{% blocktrans %}
+Der Schlüssel ist leider nur für einen Gebrauch und dann {{expiration_days}} Tage gültig. Wenn Du schon einmal drauf geklickt hast, sollte Dein Account aber aktiv sein und alles klappen. Log Dich einfach <a href="/accounts/login/">hier</a> ein.
+{% endblocktrans %}
+{% endif %}
+{% endblock %}

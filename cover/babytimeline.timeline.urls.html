@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>babytimeline.timeline.urls</title>
+</head>
+<body>
+babytimeline.timeline.urls
+<style>
+.coverage pre {float: left; margin: 0px 1em; border: none;
+               padding: 0px; }
+.num pre { margin: 0px }
+.nocov, .nocov pre {background-color: #faa}
+.cov, .cov pre {background-color: #cfc}
+div.coverage div { clear: both; height: 1.1em}
+</style>
+<div class="stats">
+Covered: 12 lines<br/>
+Missed: 0 lines<br/>
+Skipped 3 lines<br/>
+Percent: 100 %<br/>
+
+</div>
+<div class="coverage">
+<div class="skip"><span class="num"><pre> 1</pre></span><pre># This Python file uses the following encoding: utf-8</pre></div>
+<div class="cov"><span class="num"><pre> 2</pre></span><pre>from django.conf.urls.defaults import *</pre></div>
+<div class="skip"><span class="num"><pre> 3</pre></span><pre></pre></div>
+<div class="cov"><span class="num"><pre> 4</pre></span><pre>urlpatterns = patterns('babytimeline.timeline.views',</pre></div>
+<div class="cov"><span class="num"><pre> 5</pre></span><pre>    (r'^$', 'index'),</pre></div>
+<div class="cov"><span class="num"><pre> 6</pre></span><pre>    (r'^addbaby/?$', 'add_baby'),</pre></div>
+<div class="cov"><span class="num"><pre> 7</pre></span><pre>    (r'^baby/export/(?P&lt;baby_id&gt;\d+).pdf/?$', 'export_baby'),</pre></div>
+<div class="cov"><span class="num"><pre> 8</pre></span><pre>    (r'^baby/addmilestone/(?P&lt;baby_id&gt;\d+)/?$', 'add_milestone'),</pre></div>
+<div class="cov"><span class="num"><pre> 9</pre></span><pre>    (r'^baby/edit/(?P&lt;baby_id&gt;\d+)/?$', 'edit_baby'),</pre></div>
+<div class="cov"><span class="num"><pre>10</pre></span><pre>    (r'^baby/delete/(?P&lt;baby_id&gt;\d+)/?$', 'delete_baby'),</pre></div>
+<div class="cov"><span class="num"><pre>11</pre></span><pre>    (r'^milestone/edit/(?P&lt;milestone_id&gt;\d+)/?$', 'edit_milestone'),</pre></div>
+<div class="cov"><span class="num"><pre>12</pre></span><pre>    (r'^milestone/delete/(?P&lt;milestone_id&gt;\d+)/?$', 'delete_milestone'),</pre></div>
+<div class="cov"><span class="num"><pre>13</pre></span><pre>    (r'^milestone/image/(?P&lt;milestone_id&gt;\d+)/?$', 'serve_image')</pre></div>
+<div class="cov"><span class="num"><pre>14</pre></span><pre>)</pre></div>
+<div class="skip"><span class="num"><pre>15</pre></span><pre></pre></div>
+</div>
+</body>
+</html>

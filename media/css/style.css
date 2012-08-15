@@ -1,0 +1,250 @@
+/* Reset all white-space to 0 for consistency across browsers */
+* {
+    margin:0px;
+    padding:0px;
+}
+
+/* Default to some sans-serif font at a specific size */
+body {
+    font-family: Verdana, Arial, sans-serif;
+    font-size:12px;
+}
+
+/* Get some padding between paragraphs and some line spacing */
+p {
+    padding-bottom:8px;
+    line-height:1.4em;
+}
+
+/* Put some padding back onto our list elements */
+ul, ol {
+    margin-left: 10px;
+}
+li  {
+    margin-left:10px;
+    padding-left:10px;
+}
+
+/* Bye bye ugly blue border */
+a img {
+    border:0px;
+}
+
+/* No dots around clicked links */
+a, a:active {
+    outline: none;
+}
+
+/* Class to any floated elements */
+.clear {
+    clear:both;
+}
+
+/** END RESETS **/
+
+
+/* Set the width to 900 pixels, centered on the page with a little padding on top */
+#container {
+    margin-top: 10;
+}
+
+/* 90 pixels to work with at the top - positioned relative so that we can absolutely position our header elements easily */
+#header {
+    background-color: #ffd100; /* color 5 */
+    height:115px;
+    position:relative;
+    margin-bottom:30px;
+}
+#logo {
+    position:absolute;
+    left:75px;
+    top:0px;
+}
+#tagline {
+    position:absolute;
+    left:75px;
+    top:95px;
+    color:#000; /* color 2*/
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* Quick right-aligned tab-looking text menu */
+/* Make sure to be explicit with the padding and margin on our ul and li elements so we can change the defaults later on as necessary */
+#main_menu {
+    position: absolute;
+    top: 87px;
+    right: 20px;
+    height:26px;
+    margin-bottom: 3px;
+}
+#main_menu ul {
+    display:block;
+    float:right;
+    list-style-type:none;
+    padding:0px;
+    margin:0px;
+}
+#main_menu li {
+    display:block;
+    float:left;
+    margin:0 5px;
+    padding:0px;
+}
+#main_menu a {
+    display:block;
+    float:left; /* Needed for IE */
+    padding:5px 20px;
+    background-color: #14d100; /* color 1*/
+    text-decoration:none;
+    color: #0d8800; /* black*/
+}
+#main_menu a:hover {
+    color: #14d100; /* white */
+    background-color:#0d8800; /* color4 */
+}
+
+#content_container {
+   padding:10px 0px;
+   /* Do the IE hack to get a minimum content container height */
+   height:auto !important;
+   height:200px;
+   min-height:200px;
+}
+
+  /* Floating left and then right means that we can play with the widths of the sidebar and content separately and not worry about explicitly setting the space between */
+#sidebar {
+    float:right;
+    width:200px;
+    padding: 0 20px 0 2px;
+}
+.sidebar_heading {
+    padding:0 2px 0 6px;
+    background-color: #14d100; /* color */
+    margin-bottom: 2px;
+    color: #0d8800;
+}
+.sidebar_body {
+    padding-bottom:10px;
+}
+#content {
+    margin-left: 90px;
+    float:left;
+    width:650px;
+}
+
+#footer {
+    border-top: 3px dotted #70e500; /* color 2*/
+    height:40px;
+    margin: 6px 20px 0 0;
+    position:relative;
+}
+#copyright {
+    position:absolute;
+    top:5px;
+    right:0px;
+    font-size:10px;
+    color:9c02a7; /* color 2*/
+}
+
+/* Content Styles */
+
+h1 {
+    color: #9c02a7; /*color 1*/
+    padding-bottom:15px;
+    font-size:26px;
+}
+.content .info {
+    position:relative;
+    top:-17px;
+    font-size:11px;
+    color:#9c02a7; /*color 2*/
+    font-style:italic;
+}
+a:visited {
+    color: #9c02a7;
+}
+a:hover, a:active {
+    color: #ffe500;
+}
+a {
+    color: #70e500;
+}
+.buttons{
+    float: right;
+}
+
+.nounderline {
+    text-decoration: none;
+}
+
+.horizontal_form .item {
+    margin:10px 4px;
+}
+
+.horizontal_form .item .label {
+    width:150px;
+    text-align:right;
+    float:left;
+    padding-right:10px;
+    vertical-align:baseline;
+    padding-top:3px;
+ }
+.horizontal_form .item .description {
+    clear:both;
+    padding-left: 160px;
+    font-size:11px;
+    color:#9c02a7;
+    font-style:italic;
+}
+.horizontal_form .item input {
+    border:1px solid #999999;
+    padding:2px 2px;
+    color:#666666;
+}
+.horizontal_form .item input:focus {
+    background-color:#eeeeee;
+}
+.horizontal_form .header {
+    margin:15px 0px 10px 0px;
+    padding: 0 9px 0 9px;
+    font-size:14px;
+    margin: 12px;
+    border-bottom:1px dotted #000000;
+    font-weight:bold;
+    color: #000000;
+}
+.editor .button, .submitbutton {
+    margin-left:200px;
+    padding-top:10px;
+}
+.editor .button input, .submitbutton input {
+    padding:4px 10px;
+    margin-bottom: 5px;
+}
+
+.errorlist {
+    list-style-type:none;
+}
+
+.errors {
+    margin-bottom: 8px;
+    padding: 4px;
+}
+
+.milestone {
+    padding: 2px;
+}
+
+.msinfo {
+    padding: 4px;
+}
+
+.time_input {
+    margin-left: 4px;
+}
+
+
+.milestone-date{
+    padding-left: 6px;
+}

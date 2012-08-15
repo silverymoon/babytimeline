@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load facebook_tags %}
+{% load openid_tags %}
+
+<h2>{% trans "Mit bestehendem Account einloggen"%}</h2>
+<form method="post" action=".">
+{% include "form_snippet.html" %}
+<input type="hidden" name="next" value="{{ next }}" />
+<p>
+<input class="button" type="submit" value="Einloggen" />
+</p>
+</form>
+
+<h2>{% trans "Login mit anderen Diensten"%}</h2>
+<div id="socialregistration">
+{% facebook_button %}
+{% facebook_js %}
+<a class="nounderline" href="/socialregistration/openid/redirect/?openid_provider={{ 'https://www.google.com/accounts/o8/id'|urlencode }}"><img src="{{MEDIA_URL}}/images/google.png"/></a>
+<a class="nounderline" href="/socialregistration/openid/redirect/?openid_provider={{ 'http://yahoo.com'|urlencode }}"><img src="{{MEDIA_URL}}/images/yahoo.png"/></a>
+</div>
+
+<p>
+{% blocktrans %}
+Passwort vergessen? Dann <a href="/accounts/password/reset/">setze es zurück.</a> Du hast noch keinen Account? <a href="/accounts/register/">Hier</a> kannst Du Dich registrieren.
+{% endblocktrans %}
+</p>
+
+{% endblock %}

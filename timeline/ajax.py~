@@ -1,0 +1,34 @@
+from django.utils import simplejson
+import models
+
+def timeline_details(request, tl_id):
+    tl = models.Timeline.objects.get(pk=tl_id)
+    print "timeline_details: %d" %tl_id
+    return simplejson.dumps({"timeline" : tl.to_dict()}, ensure_ascii = False)
+  
+def add_timeline(request):
+    pass
+
+def add_event(request, baby_id):
+    pass
+
+def add_photo(request, baby_id):
+    pass
+
+def delete_timeline(request, timeline_id):
+    pass
+
+def delete_event(request, event_id):
+    pass
+
+def delete_photo(request, photo_id):
+    pass
+
+def update_baby(request, baby_id):
+    pass
+
+def update_event(request, event_id):
+    pass
+
+def update_photo(request, photo_id):
+    pass
