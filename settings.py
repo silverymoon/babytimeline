@@ -42,10 +42,10 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
-EMAIL_HOST = 'mail.arcor.de'
+EMAIL_HOST = 'your.host'
 EMAIL_HOST_USER = 'babytimeline'
-EMAIL_HOST_PASSWORD = '--a0(so@v4d'
-DEFAULT_FROM_EMAIL = 'babytimeline@gmail.com'
+EMAIL_HOST_PASSWORD = 'XXXXXXXXXXXXXX'
+DEFAULT_FROM_EMAIL = 'FROM@FROM:COM'
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
